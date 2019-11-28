@@ -1,17 +1,8 @@
-<div class="container">
-  <div class="row d-flex justify-content-between">
-
-
-  </div>
-</div>
-
-
-<ul>
-  <li> <a [routerLink]="['/platDuJour']" routerLinkActive="router-link-active">Plat du Jour</a></li>
-  <li> <a [routerLink]="['/entree']" routerLinkActive="router-link-active">Entrée</a></li>
-  <li> <a [routerLink]="['/plat']" routerLinkActive="router-link-active">Plats</a></li>
-  <li> <a [routerLink]="['/dessert']" routerLinkActive="router-link-active">Desserts</a></li>
-  <li> <a [routerLink]="['/boisson']" routerLinkActive="router-link-active">Boissons</a></li>
-</ul>
-
-
+<nav class="nav nav-pills flex-column">
+  <h3>Menu</h3>
+  <a class="nav-link" [routerLink]="['/platDuJour']" routerLinkActive="router-link-active">Plat du Jour</a>
+  <a class="nav-link" [routerLink]="['/entree']" routerLinkActive="router-link-active">Entrée</a>
+  <a class="nav-link" [routerLink]="['/plat']" routerLinkActive="router-link-active">Plats</a>
+  <a class="nav-link" [routerLink]="['/dessert']" routerLinkActive="router-link-active">Desserts</a>
+  <a class="nav-link" [routerLink]="['/boisson']" routerLinkActive="router-link-active">Boissons</a>
+</nav>

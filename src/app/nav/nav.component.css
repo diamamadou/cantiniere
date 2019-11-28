@@ -1,0 +1,17 @@
+nav{
+    float: left;
+    width: 200px;
+    height: 600px;
+    font-size: 25px;
+    margin-top: 177px;
+    background-color: blanchedalmond;
+    
+}
+
+nav>a{
+    padding: 20px;
+}
+
+nav>h3{
+    text-align: center;
+}
