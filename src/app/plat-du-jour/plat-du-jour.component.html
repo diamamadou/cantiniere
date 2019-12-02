@@ -1,1 +1,12 @@
-<p>plat-du-jour works!</p>
+<div *ngFor="let menu of todayMenu | keyvalue" class="d-flex align-content-center p-1">
+  <button class="btn btn-primary ml-5 w-50 text-center" (click)="menuDetail(menu.key)">
+      {{menu.value.label}} <br>
+      Prix: {{menu.value.priceDF}} €
+  </button>
+</div>
+
+<!--
+  <div *ngFor="let plat of todayMeal[{{menu.id}}]">
+        {{plat.id}}
+    </div>
+-->
