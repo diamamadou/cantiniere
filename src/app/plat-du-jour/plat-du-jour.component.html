@@ -1,12 +1,28 @@
-<div *ngFor="let menu of todayMenu | keyvalue" class="d-flex align-content-center p-1">
-  <button class="btn btn-primary ml-5 w-50 text-center" (click)="menuDetail(menu.key)">
-      {{menu.value.label}} <br>
-      Prix: {{menu.value.priceDF}} €
-  </button>
+<div class="jumbotron jumbotron-fluid" *ngIf="userInfo !== undefined">
+  <h3 class="w-100 ml-3">Bonjour {{userInfo.user.firstname}} {{userInfo.user.name}}</h3>
+  <p class="ml-3">Bienvenue !</p>
+  <button class="btn btn-dark ml-3" (click)="logout()">Se déconnecter</button>
+</div>
+<div class="jumbotron jumbotron-fluid" *ngIf="userInfo === undefined">
+  <p class="">Bienvenue !</p>
+  <button class="btn btn-dark" (click)="login()">Se connecter</button>
+  <button class="btn btn-dark ml-4" (click)="register()">Créer un compte</button>
 </div>
 
-<!--
-  <div *ngFor="let plat of todayMeal[{{menu.id}}]">
-        {{plat.id}}
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 mt-4">
+      <h3 class="text-center">-- Menus du jour --</h3>
+      <hr class="accent my-5">
     </div>
--->
+    <div class="col-6 mx-auto">
+      <div class="card card-body text-center mb-2" *ngFor="let menu of todayMenu | keyvalue">
+        <h5 class="text-uppercase" >Menu du jour!</h5>
+        <h6>{{menu.value.label}}</h6>
+        <p class="small"> Description </p>
+        <button class="float-right font-weight-bold" (click)="menuDetail(menu.key)">{{menu.value.priceDF}} €</button>
+      </div>
+    </div>
+  </div>
+</div>

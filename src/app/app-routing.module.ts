@@ -14,6 +14,7 @@ import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.com
 
 
 const routes: Routes = [
+  {path: '', component: PlatDuJourComponent},
   {path: 'nav', component: NavComponent},
   {path: 'platDuJour', component: PlatDuJourComponent},
   {path: 'entree', component: EntreeComponent},

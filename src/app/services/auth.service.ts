@@ -27,7 +27,6 @@ export class AuthService {
     return this.http.post(url, user, {observe: 'response'})
      .pipe(
        tap( token => {
-         console.log(token.headers.get('Authorization'));
          localStorage.setItem('user_token', token.headers.get('Authorization'));
          console.log('Vous ètes connectés'); }),
        catchError(this.handleError<any>('logIn')),
@@ -38,12 +37,22 @@ export class AuthService {
     localStorage.removeItem('user_token');
   }
 
+  getToken() {
+    const token = localStorage.getItem('user_token');
+    return token;
+  }
+
   getDecodedToken(toknen) {
     try {
       return jwt_decode(toknen);
     } catch {
       return null;
     }
+  }
+
+  getUserInfo(token) {
+    const user = this.getDecodedToken(token);
+    return user;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
