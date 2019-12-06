@@ -11,6 +11,7 @@ import * as jwt_decode from 'jwt-decode';
 export class LoginComponent implements OnInit {
   private errors: any;
   users;
+  userInfos;
 
   constructor(private authService: AuthService, private router: Router) { }
 

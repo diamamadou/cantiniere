@@ -15,9 +15,11 @@ export class PlatDuJourComponent implements OnInit {
   key;
   errors;
   userInfo;
+  
   constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
     this.route.params
     .subscribe(params => this.key= params);
+
    }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class PlatDuJourComponent implements OnInit {
 
   menuDetail(id) {
     this.menuService.findAllAvailableForToday()
+
       .subscribe(data => {this.todayMeal = data[id]; // console.log(data[id]);
       },
       error => {this.errors = error; },
