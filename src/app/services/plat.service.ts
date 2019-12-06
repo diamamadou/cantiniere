@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {catchError, shareReplay, tap} from 'rxjs/operators';
-import { Router } from '@angular/router';
+import {catchError, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class PlatService {
 
   constructor(private http: HttpClient, private router: Router) { }
   findAllAvailableForToday(): Observable<any> {
-    const url = 'http://localhost:8080/lunchtime/menu/findallavailablefortoday';
+    const url = 'http://localhost:8080/lunchtime/meal/findallavailablefortoday';
     return this.http.get(url, {responseType: 'json'})
-     .pipe(
-       tap( menu => {
-         ;
+      .pipe(
+        tap( menu => {
+          ;
         }),
-       catchError(this.handleError<any>('findAllAvailableForToday')),
+        catchError(this.handleError<any>('findAllAvailableForToday')),
       );
   }
 
