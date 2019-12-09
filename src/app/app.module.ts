@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -12,6 +14,11 @@ import { HeaderComponent } from './header/header.component';
 import { CommandeComponent } from './commande/commande.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {FormsModule} from '@angular/forms';
+import { JwtInterceptor } from './helpers/jwt-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './helpers/error-interceptor';
+import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +33,26 @@ import { RegisterComponent } from './register/register.component';
     CommandeComponent,
     LoginComponent,
     RegisterComponent,
+    DetailMenuJourComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,12 @@
+ <div class="container">
+ <div *ngFor="let plat of mealDay" class="d-flex align-content-center p-1">
+        <div class="ml-5">
+            {{plat.label}}
+        </div>
+        <div class="ml-3">
+            <img src="http://localhost:8080/lunchtime/{{plat.image}}" />
+        </div>
+        <button class="w-25 h-25 ml-1">Prix: {{plat.priceDF}}</button>
+    </div>
+    
+</div>

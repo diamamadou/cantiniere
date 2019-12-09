@@ -10,9 +10,11 @@ import {HeaderComponent} from './header/header.component';
 import {CommandeComponent} from './commande/commande.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
 
 
 const routes: Routes = [
+  {path: '', component: PlatDuJourComponent},
   {path: 'nav', component: NavComponent},
   {path: 'platDuJour', component: PlatDuJourComponent},
   {path: 'entree', component: EntreeComponent},
@@ -23,8 +25,7 @@ const routes: Routes = [
   {path: 'commande', component: CommandeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-
-
+  {path: 'detailMenuJour/:id', component: DetailMenuJourComponent},
 ];
 
 @NgModule({
