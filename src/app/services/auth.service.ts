@@ -42,9 +42,9 @@ export class AuthService {
     return token;
   }
 
-  getDecodedToken(toknen) {
+  getDecodedToken(token) {
     try {
-      return jwt_decode(toknen);
+      return jwt_decode(token);
     } catch {
       return null;
     }
