@@ -1,6 +1,14 @@
 .header {
     padding: 30px;
     text-align: center;
+    color: black;
+    font-size: 30px;
+    background-image: url("../image/menu.png");
+  }
+
+.user{
+    text-align: right;
+}
     background: #1abc9c;
     color: white;
     font-size: 30px;
