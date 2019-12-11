@@ -37,6 +37,15 @@ export class AuthService {
     localStorage.removeItem('user_token');
   }
 
+  forgotPassword(email): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/forgotpassword?email=' + email;
+    return this.http.post(url, email)
+      .pipe(
+        tap( data => {  }),
+        catchError(this.handleError<any>('forgotPassword')),
+      );
+  }
+
   getToken() {
     const token = localStorage.getItem('user_token');
     return token;
