@@ -11,6 +11,8 @@ import {CommandeComponent} from './commande/commande.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+
 
 
 const routes: Routes = [
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'detailMenuJour/:id', component: DetailMenuJourComponent},
+  {path: 'utilisateurs', component: UtilisateursComponent},
 ];
 
 @NgModule({

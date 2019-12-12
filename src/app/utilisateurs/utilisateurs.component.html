@@ -1,0 +1,34 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="userInfo !== undefined">
+    <h3 class="w-100 ml-3">Bonjour {{userInfo.user.firstname}} {{userInfo.user.name}}</h3>
+    <p class="ml-3">Bienvenue !</p>
+    <button class="btn btn-dark ml-3" (click)="logout()">Se déconnecter</button>
+  </div>
+  <div class="jumbotron jumbotron-fluid" *ngIf="userInfo === undefined">
+    <p class="">Bienvenue !</p>
+    <button class="btn btn-dark" (click)="login()">Se connecter</button>
+    <button class="btn btn-dark ml-4" (click)="register()">Créer un compte</button>
+  </div>
+  
+  <div class="container">
+  
+    <div class="row">
+      <div class="col-12 mt-4">
+        <h3 class="text-center">-- Les différents utlisateurs --</h3>
+        <hr class="accent my-5">
+      </div>
+    
+
+      <div *ngFor="let user of findAll" class="d-flex align-content-center p-1">
+        <div *ngFor="let user of findAll" class="d-flex align-content-center p-1">
+          <div class="ml-5">
+            {{user.name}}
+          </div>
+          <div class="ml-3">
+          </div>
+          <button class="w-25 h-25 ml-1">{{user.firstname}}</button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
