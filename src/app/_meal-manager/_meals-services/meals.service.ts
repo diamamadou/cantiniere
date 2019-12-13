@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 export class MealsService {
 
   meals;
+
+  meal;
   constructor(private http: HttpClient) { }
 
   // ------------------------------------------------------------------------------------------------------------\\
@@ -37,9 +39,9 @@ export class MealsService {
       );
   }
   getAllMeals(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/meal/findall`, { responseType: 'json' })
+    return this.http.get<any>(`${environment.apiUrl}/meal/findall`)
       .pipe(
-        map(data => {
+        tap(data => {
 
         }),
         catchError(this.handleError<any>('getFindAll')),
@@ -48,7 +50,7 @@ export class MealsService {
 
   // ------------------------------------  Ajouter un plat
   putAddmeal(meal: Meal): Observable<Meal> {
-    return this.http.put<Meal>(`${environment.apiUrl}/meal/add`, meal, { responseType: 'json' })
+    return this.http.put<Meal>(`${environment.apiUrl}/meal/add`, meal)
       .pipe(
         tap((product: Meal) => console.log('meal edited')),
         catchError(this.handleError<Meal>('putAddmeal'))
@@ -58,21 +60,12 @@ export class MealsService {
   // ------------------------------------  Supprimer un plat
   deleteMeal(idMeal: number): Observable<Meal> {
 
-    const reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('user_token')}`
-    });
-
-    return this.http.put<Meal>(`${environment.apiUrl}/meal/delete/${idMeal}`, { headers: reqHeader });
+    return this.http.put<Meal>(`${environment.apiUrl}/meal/delete/${idMeal}`, this.meal);
   }
 
   // ------------------------------------ Mettre à jour un Plat
   updateMeal(idMeal: number): Observable<Meal> {
-    const reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('user_token')}`
-    });
-    return this.http.patch<Meal>(`${environment.apiUrl}/meal/update/${idMeal}`, { headers: reqHeader });
+    return this.http.patch<Meal>(`${environment.apiUrl}/meal/update/${idMeal}`, this.meal);
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MealsService } from '../meals-services/meals.service';
+import { MealsService } from '../_meals-services/meals.service';
 import { Meal } from '../models/meal';
 import { tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,7 +32,7 @@ export class MealsManagerComponent implements OnInit {
         data => {
           this.meals = data;
           console.log('Les différents plat sont : ');
-          console.log(data);
+          console.table(data);
         });
 
   }

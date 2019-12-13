@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { MealsManagerComponent } from '../meals-manager/meals-manager.component';
 import { MealsUserComponent } from '../meals-user/meals-user.component';
-import { MealsService } from '../meals-services/meals.service';
+import { MealsService } from '../_meals-services/meals.service';
 import { IngredientComponent } from '../ingredient/ingredient.component';
 import { IngredientService } from '../_ingredients-services/ingredient.service';
 import { DetailIngredientComponent } from '../detail-ingredient/detail-ingredient.component';
