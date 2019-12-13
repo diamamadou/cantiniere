@@ -34,7 +34,7 @@
                 <td id="emai1{{user.id}}">{{user.email}}</td>
                 <td>{{user.phone}}</td>
                 <td style="cursor: pointer;font-weight: bold;"> {{user.wallet}} € <button class="btn btn-success" id="{{user.id}}" (click)="onClick($event)">Créditer</button></td>
-                <td><button class="btn btn-danger">Supprimer</button></td>
+                <td><button class="btn btn-danger" id="{{user.id}}" (click)="onClick2($event)">Supprimer</button></td>
             </tr>
         </tbody>
       </table>
@@ -53,7 +53,6 @@
             <div class="modal-body">
              <form (ngSubmit)="credit(f)" #f="ngForm">
                   <p>Vous voulez créditer le compte de {{Name}} de combien?</p>
-                  <p>IdUser: {{UserId}}</p>
                   <p> 
                     Montant: <input type="text" [(ngModel)]="amount" name="amount"> € 
                     <button class="btn btn-success" type=""submit>Créditer</button>              
@@ -69,6 +68,38 @@
           </div>
         </div>
       </div>
+
+      <!-- The Modal2 -->
+      <div class="modal" id="myModal2" [style.display]="showModal2 ? 'block' : 'none'">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Supprimé {{Name}} </h4>
+                <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+               <form (ngSubmit)="delete(f)" #f="ngForm">
+                    <p>Voulez vous vraiment {{Name}}?</p>
+                    <p> 
+                        <button class="btn btn-danger"type=""submit>Supprimer</button>              
+                    </p> 
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Annuler</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+
     </div>
 
     </div>

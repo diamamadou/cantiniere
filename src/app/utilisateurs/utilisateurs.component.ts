@@ -20,6 +20,7 @@ export class UtilisateursComponent implements OnInit {
   id;
   userInfo;
   showModal : boolean;
+  showModal2 : boolean;
   UserId    : string;
   Name : string;
 
@@ -45,15 +46,28 @@ export class UtilisateursComponent implements OnInit {
   
   onClick(event)
   {
-    this.showModal = true; // Show-Hide Modal Check
+      this.showModal = true; // Show-Hide Modal Check
       this.UserId = event.target.id;
       this.Name = document.getElementById("firstname"+this.UserId).innerHTML;
   }
+
+  onClick2(event)
+  {
+      this.showModal2 = true; // Show-Hide Modal Check
+      this.UserId = event.target.id;
+      this.Name = document.getElementById("firstname"+this.UserId).innerHTML;
+
+  }
+
+ 
+
   //Bootstrap Modal Close event
   hide()
   {
     this.showModal = false;
+    this.showModal2 = false;
   }
+
 
   credit(amount) {
     console.log(this.UserId);
@@ -69,6 +83,24 @@ export class UtilisateursComponent implements OnInit {
       error => {this.errors = error; },
       () => {
         this.router.navigate(['/user/credit/' + this.UserId + '/'+ amount]); 
+      }
+      );
+  }
+
+  delete(id) {
+    console.log(this.UserId);
+    id = this.UserId;
+    console.log(id);
+
+    this.creditService.delete(this.UserId)
+
+      .subscribe(data => {
+        this.id = data[this.UserId]; 
+        console.log(id);
+      },
+      error => {this.errors = error; },
+      () => {
+        this.router.navigate(['/user/delete/'+id]); 
       }
       );
   }

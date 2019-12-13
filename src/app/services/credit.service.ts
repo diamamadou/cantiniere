@@ -22,6 +22,17 @@ export class CreditService {
       );
   }
 
+  delete(id): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/user/delete/'+id;
+    return this.http.delete(url, {responseType: 'json'})
+     .pipe(
+       tap( credit => {
+         ;
+        }),
+       catchError(this.handleError<any>('delete')),
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
