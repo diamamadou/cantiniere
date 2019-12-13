@@ -16,18 +16,34 @@
         <h3 class="text-center">-- Les différents utlisateurs --</h3>
         <hr class="accent my-5">
       </div>
-    
 
-      <div *ngFor="let user of findAll" class="d-flex align-content-center p-1">
-        <div *ngFor="let user of findAll" class="d-flex align-content-center p-1">
-          <div class="ml-5">
-            {{user.name}}
-          </div>
-          <div class="ml-3">
-          </div>
-          <button class="w-25 h-25 ml-1">{{user.firstname}}</button>
-        </div>
-      </div>
+      <table>
+        <colgroup>
+         <col>
+         <col style="background-color: yellow">
+       </colgroup>
+       <tr>
+         <th>Nombre</th>
+         <th>Nom</th>
+         <th>Prénom</th>
+         <th>Email</th>
+         <th>Numéro</th>
+         <th>Adresse</th>
+         <th>Portefeuille</th>
+         <th>Action</th>
+       </tr>
+       <tr *ngFor="let user of findAll">
+         <td>{{user.id}}</td>
+         <td>{{user.name}}</td>
+         <td>{{user.firstname}}</td>
+         <td>{{user.email}}</td>
+         <td>{{user.phone}}</td>
+         <td>{{user.adress}}</td>
+         <td>{{user.wallet}}€ <button class="btn btn-success">Créditer</button></td>
+         <td><button class="btn btn-danger">Supprimer</button></td>
+
+       </tr>
+     </table>
 
 
     </div>

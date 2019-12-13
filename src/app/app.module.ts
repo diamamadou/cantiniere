@@ -20,6 +20,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error-interceptor';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
     LoginComponent,
     RegisterComponent,
     DetailMenuJourComponent,
-    UtilisateursComponent
+    UtilisateursComponent,
+    ModalComponent
   ],
     imports: [
         BrowserModule,
