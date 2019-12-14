@@ -24,6 +24,8 @@ import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.com
 
 
 import { MealManagerModule } from './_meal-manager/meal-manager-module/meal-manager.module';
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { MealManagerModule } from './_meal-manager/meal-manager-module/meal-mana
     LoginComponent,
     RegisterComponent,
     DetailMenuJourComponent,
+    HomeComponent,
 
 
 
@@ -49,7 +52,8 @@ import { MealManagerModule } from './_meal-manager/meal-manager-module/meal-mana
     MealManagerModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
 

@@ -17,10 +17,11 @@ import { MealsUserComponent } from './_meal-manager/meals-user/meals-user.compon
 import { DetailIngredientComponent } from './_meal-manager/detail-ingredient/detail-ingredient.component';
 import { DetailMealsManagerComponent } from './_meal-manager/detail-meals-manager/detail-meals-manager.component';
 import { DetailMealsUserComponent } from './_meal-manager/detail-meals-user/detail-meals-user.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: PlatDuJourComponent },
+  { path: '', component: HomeComponent },
   { path: 'nav', component: NavComponent },
   { path: 'platDuJour', component: PlatDuJourComponent },
   { path: 'entree', component: EntreeComponent },

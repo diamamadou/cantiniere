@@ -1,0 +1,11 @@
+<div class="container bloc">
+    <div class="row">
+        <div class="col-sm text-center">
+            <div class="jumbotron jumbotron-fluid" *ngIf="testconnexion()">
+                <h3 class="w-100">Bonjour {{userInfo.user.firstname}} {{userInfo.user.name}}</h3>
+                <p class="">Bienvenue !</p>
+                <button class="btn btn-dark ml-3" (click)="logout()">Se déconnecter</button>
+            </div>
+        </div>
+    </div>
+</div>

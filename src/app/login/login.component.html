@@ -1,13 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <form (ngSubmit)="login(f)" #f="ngForm">
-        <label for="email">E-mail</label>
-        <input type="email" [(ngModel)]="email" name="email">
-        <label for="password">Mot de passe</label>
-        <input type="password" [(ngModel)]="password" name="password">
-        <button class="btn btn-primary" type=""submit>S'enregistrer</button>
-      </form>
+    <div class="col-sm">
+      <div class="col-md-6 offset-md-1 mt-2">
+        <div class="alert alert-info text-center">
+          Veuillez vous connectez en tout sécurité
+        </div>
+        <div class="card mb-2">
+          <h5 class="card-header text-center">CONNEXION</h5>
+          <div class="card-body">
+            <form (ngSubmit)="login(f)" #f="ngForm">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" [(ngModel)]="email" name="email" class="form-control" aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" [(ngModel)]="password" name="password" class="form-control"
+                  id="exampleInputPassword1">
+              </div>
+              <button class="btn btn-primary" type="" submit>Se Connecter</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>

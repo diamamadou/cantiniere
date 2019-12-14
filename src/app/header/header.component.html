@@ -1,17 +1,38 @@
 <div class="header">
+
         <h1>Bienvenue</h1>
         <p>chez votre cantinière</p>
+        <!--<div class="logo"><img src="assets/icons/Lunch5.png" alt=""></div>-->
         <div class="user">
                 <i class="fa fa-shopping-basket"></i> 10€
                 <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Allan <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" title="Lien 1">Mon compte</a></li>
-                                   <li><a href="#" title="Lien 2">Mes commandes</a></li>
-                                   <li role="separator" class="divider"></li>
-                                   <li><a href="#" title="Lien 3">Déconnexion</a></li>
-                                </ul>
+                        <div class="dropdown">
+                                <a class="btn dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <span class="texto" *ngIf="testconnexion()">{{userInfo.user.name}}
+                                                {{userInfo.user.firstname}}</span>
+                                        <img width="50" alt="Logo login" src="assets/icons/login-icon.jpg" />
+
+                                </a>
+
+                                <div class="dropdown-menu espace espace_gauche" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Mon compte</a>
+                                        <a class="dropdown-item" href="#">Mes commandes</a>
+                                        <a class="dropdown-item">
+                                                <span *ngIf="testconnexion()">
+                                                        <a class="lien_desactive" (click)="deconnexion()">
+                                                                Déconnexion</a>
+                                                </span>
+                                                <span *ngIf="! testconnexion()">
+                                                        <a class="lien_desactive"
+                                                                [routerLink]="['/login']">Connexion</a>
+
+                                                </span>
+
+                                        </a>
+                                </div>
+                        </div>
+
                 </div>
         </div>
 
