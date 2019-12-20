@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {PlatService} from '../services/plat.service';
-import {AuthService} from '../services/auth.service';
-import {Router} from '@angular/router';
+import { PlatService } from '../services/plat.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plat',
@@ -18,12 +18,14 @@ export class PlatComponent implements OnInit {
   }
   getAllForToday() {
     this.platService.findAllAvailableForToday()
-      .subscribe(data => {this.todayMeal = data; console.log('Les plats du jour sont : ');
-                          data.forEach(element => {
+      .subscribe(data => {
+        this.todayMeal = data; console.log('Les plats du jour sont : ');
+        data.forEach(element => {
           // this.todayMeal = element.meals;
           console.log(element.label + '  Prix: ' + element.priceDF);
         })
-        ; });
+          ;
+      });
     this.platService.findAllAvailableForToday()
       .subscribe(data => this.todayMeal = data);
 

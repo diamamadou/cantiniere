@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { PlatDuJourComponent } from './plat-du-jour/plat-du-jour.component';
@@ -14,11 +16,17 @@ import { HeaderComponent } from './header/header.component';
 import { CommandeComponent } from './commande/commande.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error-interceptor';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
+
+
+import { MealManagerModule } from './_meal-manager/meal-manager-module/meal-manager.module';
+import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -33,15 +41,22 @@ import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.com
     CommandeComponent,
     LoginComponent,
     RegisterComponent,
-    DetailMenuJourComponent
+    DetailMenuJourComponent,
+    HomeComponent,
+
+
+
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    MealManagerModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule
+  ],
   providers: [
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

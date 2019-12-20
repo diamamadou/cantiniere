@@ -5,9 +5,22 @@
     font-size: 30px;
     background-image: url("../image/menu.png");
   }
-
+.logo{
+  text-align: left;
+}
 .user{
     text-align: right;
-    color: white;
+    color:midnightblue;
     font-size: 30px;
+  }
+  .espace_gauche{
+       margin-right: 60px;
+  }
+  .texto{
+    
+  font-size: 14pt;  
+  font-weight:500;
+  margin-right: 5px;}
+  a.lien_desactive,a.lien_desactive:link{
+    text-decoration: none;
   }

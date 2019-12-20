@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {catchError, shareReplay, tap} from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
@@ -10,31 +10,33 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class AuthService {
-
+  UserInfo2;
   constructor(private http: HttpClient, private router: Router) { }
 
   register(user): Observable<any> {
     const url = 'http://localhost:8080/lunchtime/register';
-    return this.http.post(url, user, {responseType: 'json'})
+    return this.http.post(url, user, { responseType: 'json' })
       .pipe(
-        tap( product => {console.log(product); console.log(user); }),
+        tap(product => { console.log(product); console.log(user); }),
         catchError(this.handleError<any>('register'))
       );
   }
 
   logIn(user): Observable<any> {
     const url = 'http://localhost:8080/lunchtime/login';
-    return this.http.post(url, user, {observe: 'response'})
-     .pipe(
-       tap( token => {
-         localStorage.setItem('user_token', token.headers.get('Authorization'));
-         console.log('Vous ètes connectés'); }),
-       catchError(this.handleError<any>('logIn')),
+    return this.http.post(url, user, { observe: 'response' })
+      .pipe(
+        tap(token => {
+          localStorage.setItem('user_token', token.headers.get('Authorization'));
+          console.log('Vous ètes connectés');
+        }),
+        catchError(this.handleError<any>('logIn')),
       );
   }
 
   logOut() {
     localStorage.removeItem('user_token');
+    this.router.navigate(['/']);
   }
 
   getToken() {
@@ -52,6 +54,13 @@ export class AuthService {
 
   getUserInfo(token) {
     const user = this.getDecodedToken(token);
+    this.UserInfo2 = this.getDecodedToken(token);
+    return user;
+  }
+
+
+  getUserInfo2() {
+    const user = this.getDecodedToken(this.UserInfo2);
     return user;
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 
@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
     this.authService.logIn(user.form.value)
       .subscribe(users => { this.users = users; console.log(localStorage.getItem('user_token')); },
         error => { this.router.navigate(['/platDujour']); },
-      () => { this.router.navigate(['/plat']); }
-    );
-    const   hello = this.authService.getDecodedToken(localStorage.getItem('user_token'));
+        () => { this.router.navigate(['/']); }
+      );
+    const hello = this.authService.getDecodedToken(localStorage.getItem('user_token'));
     console.log(hello);
   }
 }

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row bg-secondary p-3">
+        <!--<div class="col-10">
+            <app-ser-add (mealSubmit)="mealSubmit($event)" class="w-100"></app-fast-add>
+        </div>-->
+        <div class="col-2">
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-12">
+            <div class="row bg-dark text-white p-3">
+                <div class="col-1 text-center">
+                    ID
+                </div>
+                <div class="col-2 text-center">
+                    Plats
+                </div>
+                <div class="col-4 text-center">
+                    Photo
+                </div>
+                <div class="col-1 text-center">
+                    Prix
+                </div>
+                <div class="col-3 text-center">
+                    Actions
+                </div>
+            </div>
+            <div *ngFor="let plat of meals | keyvalue" class="row border-top py-2">
+                <div class="col-1 border-right text-center">
+                    {{ plat.key }}
+                </div>
+                <div class="col-2 border-right text-center">
+                    {{ plat.value.label }}
+                </div>
+                <div class="col-4 border-right text-center">
+                    <img src="http://localhost:8080/lunchtime/{{plat.value.image}}" alt="">
+                </div>
+                <div class="col-1 border-right text-center">
+                    {{ plat.value.priceDF }} €
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-info btn-xs mr-3" [routerLink]="['/detail-meal/', plat.key]"> More</button>
+                    <button class="btn btn-warning btn-xs mr-4" [routerLink]="['/edit', plat.key]"> Edit</button>
+                    <button class="btn btn-danger btn-xs" (click)="deleteBeer(beer.key)"> Delete</button>
+                </div>
+            </div>
+            <div class="col-12 text-center" *ngIf="beers?.length < 1 "> --- fin --- </div>
+        </div>
+    </div>
+</div>
