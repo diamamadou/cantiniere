@@ -2,7 +2,6 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpClient} from '
 import {Observable, throwError} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AuthService} from '../services/auth.service';
-
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService, private http: HttpClient) {}

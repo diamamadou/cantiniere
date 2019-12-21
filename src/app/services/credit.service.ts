@@ -7,17 +7,29 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class CreditService {
 
   constructor(private http: HttpClient, private router: Router) { }
-  findAllAvailableForToday(): Observable<any> {
-    const url = 'http://localhost:8080/lunchtime/menu/findallavailablefortoday';
-    return this.http.get(url, {responseType: 'json'})
+  credit(id,amount): Observable<any> {
+    const montant = "amount="+amount;
+    const url = 'http://localhost:8080/lunchtime/user/credit/'+id+'?'+montant;
+    return this.http.post(url, {responseType: 'json'})
      .pipe(
-       tap( menu => {
+       tap( credit => {
          ;
         }),
-       catchError(this.handleError<any>('findAllAvailableForToday')),
+       catchError(this.handleError<any>('credit')),
+      );
+  }
+
+  delete(id): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/user/delete/'+id;
+    return this.http.delete(url, {responseType: 'json'})
+     .pipe(
+       tap( credit => {
+         ;
+        }),
+       catchError(this.handleError<any>('delete')),
       );
   }
 
