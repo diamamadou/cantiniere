@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css']
 })
+export class ModalComponent implements OnInit {
 
-export class AppComponent {
-  title = 'cantiniere';
+  constructor() { }
+
+  ngOnInit() {
+  }
+
   showModal : boolean;
   UserId    : string;
   Firstname : string;
@@ -27,4 +31,5 @@ export class AppComponent {
   {
     this.showModal = false;
   }
+
 }

@@ -19,6 +19,8 @@ import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error-interceptor';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.com
     CommandeComponent,
     LoginComponent,
     RegisterComponent,
-    DetailMenuJourComponent
+    DetailMenuJourComponent,
+    UtilisateursComponent,
+    ModalComponent
   ],
     imports: [
         BrowserModule,
