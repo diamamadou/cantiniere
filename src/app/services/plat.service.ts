@@ -14,10 +14,11 @@ export class PlatService {
     const url = 'http://localhost:8080/lunchtime/meal/findallavailablefortoday';
     return this.http.get(url, {responseType: 'json'})
       .pipe(
-        tap( menu => {
+        tap( menu => {console.log(menu)
           ;
-        }),
-        catchError(this.handleError<any>('findAllAvailableForToday')),
+        },
+          err => {console.log('erreur'); }),
+        // catchError(this.handleError<any>('findAllAvailableForToday')),
       );
   }
 

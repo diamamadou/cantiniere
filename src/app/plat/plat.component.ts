@@ -18,14 +18,14 @@ export class PlatComponent implements OnInit {
   }
   getAllForToday() {
     this.platService.findAllAvailableForToday()
-      .subscribe(data => {this.todayMeal = data; console.log('Les plats du jour sont : ');
+      .subscribe(data => {this.todayMeal = data; /*console.log('Les plats du jour sont : '); console.log(data);
                           data.forEach(element => {
           // this.todayMeal = element.meals;
           console.log(element.label + '  Prix: ' + element.priceDF);
-        })
+        })*/
         ; });
-    this.platService.findAllAvailableForToday()
-      .subscribe(data => this.todayMeal = data);
+    /*this.platService.findAllAvailableForToday()
+      .subscribe(data => this.todayMeal = data);*/
 
     if (this.authService.getToken() !== null) {
       this.userInfo = this.authService.getUserInfo(this.authService.getToken());
