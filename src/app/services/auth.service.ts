@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   register(user): Observable<any> {
-    const url = 'http://localhost:8080/lunchtime/register';
+    const url = 'http://localhost:8080/lunchtime/user/register';
     return this.http.post(url, user, {responseType: 'json'})
       .pipe(
         tap( product => {console.log(product); console.log(user); }),
@@ -35,6 +35,15 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('user_token');
+  }
+
+  forgotPassword(email): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/forgotpassword?email=' + email;
+    return this.http.post(url, email)
+      .pipe(
+        tap( data => {  }),
+        catchError(this.handleError<any>('forgotPassword')),
+      );
   }
 
   getToken() {

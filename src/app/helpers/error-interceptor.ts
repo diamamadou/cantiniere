@@ -13,9 +13,11 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(
         catchError(err => {
           if (err.status === 401) {
-            this.authService.logOut();
-            location.reload(true);
-          }
+            // this.authService.logOut();
+            // location.reload(true);
+          } /*else if (err.status === 412) {
+            console.log('helpp');
+          }*/
           const error = err.message || err.statusText;
           return throwError(error);
         })

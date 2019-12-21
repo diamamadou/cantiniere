@@ -19,6 +19,8 @@ import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error-interceptor';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ModalComponent } from './modal/modal.component';
 
@@ -36,6 +38,8 @@ import { ModalComponent } from './modal/modal.component';
     LoginComponent,
     RegisterComponent,
     DetailMenuJourComponent,
+    ForgotPasswordComponent,
+    DetailCommandeComponent
     UtilisateursComponent,
     ModalComponent
   ],

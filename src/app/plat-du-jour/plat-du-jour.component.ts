@@ -15,7 +15,7 @@ export class PlatDuJourComponent implements OnInit {
   key;
   errors;
   userInfo;
-  
+
   constructor(private menuService: MenuService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
     this.route.params
     .subscribe(params => this.key= params);
