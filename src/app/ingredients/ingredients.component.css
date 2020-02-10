@@ -1,0 +1,23 @@
+.row{
+    margin-top: 20%;
+    position: relative;
+}
+
+img{
+    border-radius: 5%;
+    border:  solid  1px gray;
+    padding: 2%;
+}
+
+.container{
+    position: absolute;
+    margin-left: 20%;
+}
+
+#btnAdd{
+    font-size: 22px;
+    color: white;
+    float: right;
+    margin-top: 15%;
+    margin-right: 5%;   
+}

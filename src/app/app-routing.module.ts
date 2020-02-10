@@ -17,6 +17,7 @@ import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ModalComponent } from './modal/modal.component';
 import { CartComponent } from './cart/cart.component';
 import { PlatDetailComponent } from './plat-detail/plat-detail.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'modal', component: ModalComponent},
   {path: 'cart', component: CartComponent},
   {path: 'plat-detail/:id', component: PlatDetailComponent},
+  {path: 'ingredients', component: IngredientsComponent},
 ];
 
 @NgModule({
