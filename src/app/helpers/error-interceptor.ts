@@ -13,12 +13,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req)
       .pipe(
         catchError(err => {
-          if (err.status === 401 || err.status === 403) {
+          if (err.status === 401 || err.status === 403 || err.status === 412) {
             this.authService.logOut();
             this.router.navigate(['/login']);
-          } else if (err.status === 412 && req.url.startsWith('http://localhost:8080/lunchtime/forgotpassword?')) {
-            console.log(req.url);
-            location.reload();
           }
           const error = err.message || err.statusText;
           return throwError(error);

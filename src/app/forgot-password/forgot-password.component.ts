@@ -30,15 +30,15 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(data => {
         console.log('Votre mot de passe à été réinitialisé, veillez vérifier votre boite mail'); },
         (err) => {console.log('err', err)},
-        () => {console.log('hello')});
+        () => {});
   }
 
   findAllUsers() {
     this.userService.findAll()
-          .subscribe(data => { data.forEach(email => {
-            this.emails.push(email.email);
-          }); },
-              (err) => { console.log('Vous n\'ètes pas connectés / Vous n\'etes pas cantiniere'); });
+      .subscribe(data => { data.forEach(email => {
+        this.emails.push(email.email);
+      }); },
+          (err) => { console.log('Erreur'); });
   }
 
   openModal() {
@@ -50,18 +50,6 @@ export class ForgotPasswordComponent implements OnInit {
         return this.hasError = false;
       }
     });
-    //
-    // console.log(this.forgotPassword(this.email));
-    // //console.log(this.response)
-    // this.confirmedModal = true;
-    // if(this.response) {
-    //   console.log("Erreur")
-    //   this.hasError = true;
-    // } else {
-    //   console.log("NON")
-    //   //this.forgotPassword(this.email);
-    //   this.hasError = false;
-    // }
   }
 
   closeModal(hasError) {
