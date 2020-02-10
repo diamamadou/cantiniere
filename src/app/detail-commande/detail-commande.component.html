@@ -18,32 +18,53 @@
       <td>{{order?.menu.priceDF}} €</td>
       <td>{{order?.id}}</td>
     </tr>
-    <tr>
-      <td colspan="3">Prix Total</td>
-      <td>{{computedPrice}} €</td>
-    </tr>
-    </ng-container>
-
-    <ng-container *ngIf="order?.quantityMeals !== undefined">
-    <tr>
-        <td scope="row">{{order?.creationDate | date }}</td>
-          <td>
-            <p *ngFor="let meal of order?.quantityMeals">{{meal.meal.label}}</p>
-          </td>
-          <td>
-            <p *ngFor="let meal of order?.quantityMeals">{{meal.meal.priceDF}} €</p>
-          </td>
-        <td>{{order?.id}}</td>
-    </tr>
-      <tr>
+      <!-- <tr>
         <td colspan="3">Prix Total</td>
         <td>{{computedPrice}} €</td>
-      </tr>
+      </tr> -->
+      </ng-container>
+
+      <ng-container *ngIf="order?.quantityMeals !== undefined">
+      <tr>
+          <td scope="row">{{order?.creationDate | date }}</td>
+            <td>
+              <p *ngFor="let meal of order?.quantityMeals">{{meal.meal.label}}</p>
+            </td>
+            <td>
+              <p *ngFor="let meal of order?.quantityMeals">{{meal.meal.priceDF}} €</p>
+            </td>
+          <td>{{order?.id}}</td>
+       </tr>
+        <!-- <tr>
+          <td colspan="3">Prix Total</td>
+          <td>{{computedPrice}} €</td>
+        </tr> -->
     </ng-container>
+    <tr>
+      <td class="statut">  
+        <ng-container *ngIf="order?.status === 0">Effectuée</ng-container>
+        <ng-container *ngIf="order?.status === 1">Livrée</ng-container>
+        <ng-container *ngIf="order?.status === 2">Annulée</ng-container>
+      </td>
+      <td colspan="2">Prix Total</td>
+      <td>{{computedPrice}} €</td>
+    </tr>
     </tbody>
   </table>
 
-  <div>
+  <div class="text-center m-2">
+    <ng-container *ngIf="order?.status === 0">
+      <button class="btn-danger" (click)="openModal('cancel')">Annuler</button>
+    </ng-container>
+    <ng-container *ngIf="order?.status === 0 && order?.user.wallet >= computedPrice">
+      <button class="btn-success" (click)="openModal('deliver')">Livrer</button>
+    </ng-container>
+    <ng-container *ngIf="order?.status === 0">
+      <button class="btn-warning" (click)="openModal('modify')">Modfier</button>
+    </ng-container>
+  </div>
+
+  <div *ngIf="cantiniere">
     <h3>Informations du client</h3>
     <span>
     <span class="text-primary">Prénom: </span> <span class="font-italic">{{order?.user.firstname}} </span><br>
@@ -51,5 +72,83 @@
     <span class="text-primary">E-mail: </span> <span class="font-italic">{{order?.user.email}} </span><br>
     <span class="text-primary">Porte-feuille: </span> <span class="font-italic">{{order?.user.wallet}} €</span>
     </span>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal" [style.display]="confirmModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "closeModal('confirmModal')">&times;</button>
+      </div>
+      
+      <div class="modal-body" *ngIf="cliquedButton === 'cancel'">
+       <p>Voulez-vous confirmer l'annulation de cette commande ?</p>
+
+       <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+       <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton(order?.id, '', 'cancel')">Confirmer</button>
+      </div>
+
+      <div class="modal-body" *ngIf="cliquedButton === 'modify'">
+        <label class="pr-3">Menus </label><br>
+        <select name="singleSelect" [(ngModel)]="selectedMenu">
+          <ng-container *ngFor='let menu of menus'>
+            <option value="{{menu.id}}">{{menu.label}}</option>
+          </ng-container>
+        </select><br/>
+
+        <label>Plats </label><br>
+        <select name="singleSelect" ng-model="selectedMeal" [(ngModel)]="selectedMeal">
+          <ng-container *ngFor="let meal of meals">
+            <option value="{{meal.id}}">{{meal.label}}</option>
+          </ng-container>
+        </select><br/>
+        
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton(order?.id, order?.user.id, 'modify')">Confirmer</button>
+      </div>
+
+      <div class="modal-body" *ngIf="cliquedButton === 'deliver'">
+        <p>Voulez-vous confirmer la livraison?</p>
+
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton(order?.id, '', 'deliver')">Confirmer</button>
+      </div>
+
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton(order?.id)">Confirmer</button>
+      </div> -->
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal" [style.display]="confirmedModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title">Confirmé</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "closeModal('confirmedModal')">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+       <p *ngIf="cliquedButton === 'cancel'">La commande a été annulée</p>
+
+       <p *ngIf="cliquedButton === 'modify'">La commande a été modifiée</p>
+
+       <p *ngIf="cliquedButton === 'deliver'">La commande a été livrée</p>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "closeModal('confirmedModal')">OK</button>
+      </div>
+      
+    </div>
   </div>
 </div>

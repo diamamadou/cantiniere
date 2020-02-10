@@ -28,7 +28,7 @@ export class PlatDuJourComponent implements OnInit {
 
   getAllForToday() {
     this.menuService.findAllAvailableForToday()
-      .subscribe(data => {this.todayMenu = data; console.log('Les menus du jour sont : ');
+      .subscribe(data => {console.log(data);this.todayMenu = data; console.log('Les menus du jour sont : ');
                           data.forEach(element => {
         // this.todayMeal = element.meals;
         console.log(element.label + '  Prix: ' + element.priceDF);
@@ -43,26 +43,6 @@ export class PlatDuJourComponent implements OnInit {
   }
 
   menuDetail(id) {
-    this.menuService.findAllAvailableForToday()
-
-      .subscribe(data => {this.todayMeal = data[id]; // console.log(data[id]);
-      },
-      error => {this.errors = error; },
-      () => {this.router.navigate(['/detailMenuJour/' + id]); }
-      );
-  }
-
-  logout() {
-    this.authService.logOut();
-    this.router.navigate(['/platDuJour']);
-    console.log('vous ètes déconnectés !');
-  }
-
-  login() {
-    this.router.navigate(['/login']);
-  }
-
-  register() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/detailMenuJour/' + id]);
   }
 }

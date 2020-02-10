@@ -1,0 +1,149 @@
+<h2>Mon Panier</h2>
+
+<div class="container">
+  
+    <div *ngIf="!userId" class="center no-orders">
+        <p>Veillez vous connectez</p>
+    </div>
+
+    <div *ngIf="!meal && !menu" class="center no-orders">
+        <p>Vous n'avez aucun plat/menu dans votre panier !</p>
+    </div>
+
+<!--    Meal    -->
+
+<div *ngIf="meal">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col"><span class="fa fa-lemon-o"></span> Plats+Détails</th>
+                <th scope="col"><span class="fa fa-euro"></span> Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{meal?.label}}</td>
+                <td>{{meal?.priceDF}} €</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="order-cancel-container">
+        <button class="btn-success" (click)="openCartModal('meal')">
+            Commander
+        </button>
+        <button class="btn-danger" (click)="openCartModal('delete_meal')" color="danger">
+            Supprimer
+        </button>
+    </div>
+</div>
+
+<!--    Menu    -->
+
+    <div *ngIf="menu">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"><span class="fa fa-lemon-o"></span> Plats+Détails</th>
+                    <th scope="col"><span class="fa fa-euro"></span> Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{menu?.label}}</td>
+                    <td>{{menu?.priceDF}} €</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="order-cancel-container">
+            <button class="btn-success" (click)="openCartModal('menu')">
+                Commander
+            </button>
+            <button class="btn-danger" (click)="openCartModal('delete_menu')" color="danger">
+                Supprimer
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+
+<div class="modal" [style.display]="confirmModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "closeModal('confirmModal')">&times;</button>
+        </div>
+        
+        <ng-container *ngIf="cliquedButton === 'menu'">
+            <div class="modal-body">
+                <p>Voulez-vous confirmer la commande ?</p>
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton('menu')">Confirmer</button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="cliquedButton === 'delete_menu'">
+            <div class="modal-body">
+                <p>Voulez-vous confirmer la suppression de cette commande ?</p>
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal()">Annuler</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton('delete_menu')">Confirmer</button>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="cliquedButton === 'meal'">
+            <div class="modal-body">
+                <p>Voulez-vous confirmer la commande ?</p>
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal('confirmModal')">Annuler</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton('meal')">Confirmer</button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="cliquedButton === 'delete_meal'">
+            <div class="modal-body">
+                <p>Voulez-vous confirmer la suppression de cette commande ?</p>
+            </div>
+            
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal()">Annuler</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "confirmButton('delete_meal')">Confirmer</button>
+            </div>
+        </ng-container>
+        
+      </div>
+    </div>
+</div>
+
+<div class="modal" [style.display]="confirmedModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "closeModal('confirmedModal')">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+         <p *ngIf="cliquedButton === 'menu' || cliquedButton === 'meal'">Votre commande a été effetuée</p>
+         <p *ngIf="cliquedButton === 'delete_menu' || cliquedButton === 'delete_meal'">Votre commande a été supprimée</p>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "closeModal('confirmedModal')">OK</button>
+        </div>
+        
+      </div>
+    </div>
+</div>
+  

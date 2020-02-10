@@ -1,23 +1,19 @@
-<div class="jumbotron jumbotron-fluid" *ngIf="userInfo !== undefined">
-  <h3 class="w-100">Bonjour {{userInfo.user.firstname}} {{userInfo.user.name}}</h3>
-  <p class="">Bienvenue !</p>
-  <button class="btn btn-dark ml-3" (click)="logout()">Se déconnecter</button>
-</div>
-<div class="jumbotron jumbotron-fluid" *ngIf="userInfo === undefined">
-  <p class="">Bienvenue !</p>
-  <button class="btn btn-dark" (click)="login()">Se connecter</button>
-  <button class="btn btn-dark ml-4" (click)="register()">Se connecter</button>
-</div>
-
 <div class="container">
-  <div *ngFor="let plat of todayMeal" class="d-flex align-content-center p-1">
-    <div class="ml-5">
-      {{plat.label}}
+  <div class="row">
+    <div class="col-12 mt-4">
+      <h3 class="text-center">-- Plats du jour --</h3>
+      <hr class="accent my-5">
     </div>
-    <div class="ml-3">
-      <img src="http://localhost:8080/lunchtime/{{plat.image}}" />
+    <div class="col-6 mx-auto menu-card">
+      <div class="card card-body text-center mb-2 ml-2" *ngFor="let meal of todayMeal">
+        <h5 class="text-uppercase" >{{meal.label}}</h5>
+        <!-- <h6>{{menu.value.label}}</h6> -->
+        <div class="img-container">
+          <img src="http://localhost:8080/lunchtime/{{meal.image}}" alt="" />
+        </div>
+        <p class="small"> Description </p>
+        <button class="float-right font-weight-bold btn-success" (click)="mealDetail(meal.id)">{{meal.priceDF}} €</button>
+      </div>
     </div>
-    <button class="w-25 h-25 ml-1">Prix: {{plat.priceDF}}</button>
   </div>
-
 </div>

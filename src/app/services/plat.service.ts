@@ -22,6 +22,14 @@ export class PlatService {
       );
   }
 
+  findOneMeal(idMeal: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/lunchtime/meal/find/${idMeal}`)
+      .pipe(
+        tap(),
+        catchError(this.handleError<any>('findAllAvailableForToday')),
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

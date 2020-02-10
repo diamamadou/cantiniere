@@ -21,6 +21,10 @@ import { ErrorInterceptor } from './helpers/error-interceptor';
 import { DetailMenuJourComponent } from './detail-menu-jour/detail-menu-jour.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { ModalComponent } from './modal/modal.component';
+import { CartComponent } from './cart/cart.component';
+import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { DetailCommandeComponent } from './detail-commande/detail-commande.compo
     RegisterComponent,
     DetailMenuJourComponent,
     ForgotPasswordComponent,
-    DetailCommandeComponent
+    DetailCommandeComponent,
+    UtilisateursComponent,
+    ModalComponent,
+    CartComponent,
+    PlatDetailComponent
   ],
     imports: [
         BrowserModule,

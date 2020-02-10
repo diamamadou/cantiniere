@@ -41,7 +41,8 @@ export class AuthService {
     const url = 'http://localhost:8080/lunchtime/forgotpassword?email=' + email;
     return this.http.post(url, email)
       .pipe(
-        tap( data => {  }),
+        tap( data => {  },
+          (err) => { }),
         catchError(this.handleError<any>('forgotPassword')),
       );
   }

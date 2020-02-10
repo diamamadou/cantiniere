@@ -1,12 +1,25 @@
 <h2>Les commandes</h2>
 
 <div class="container">
-  <table class="table table-bordered table-hover">
+
+  <div class="text-center" *ngIf="lunchLady">
+    <button class="m-1 btn-success" (click)="allOrders()">Toutes les commandes</button>
+    <button class="m-1 btn-success" (click)="openModal('between_dates')">Entre dates</button>
+    <button class="m-1 btn-success" (click)="openModal('for_user')">Par utilisateur</button>
+    <button class="m-1 btn-success" (click)="openModal('for_user_today')">Aujourd'hui par utilisateur</button>
+  </div><br>
+
+  <div *ngIf="!orders?.length > 0" class="text-center">
+    <p>Vous n'avez aucune commande !</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="orders?.length > 0">
     <thead>
     <tr>
       <th scope="col" ><span class="fa fa-calendar"></span> Date</th>
       <th scope="col"><span class="fa fa-lemon-o"></span> Plats+Détails</th>
       <th scope="col"><span class="fa fa-euro"></span> Prix</th>
+      <th scope="col"><span class="fa fa-check-circle"></span> Statut</th>
       <th scope="col"><span class="fa fa-list-ol"></span> &#8470; commande</th>
     </tr>
     </thead>
@@ -15,6 +28,11 @@
       <td scope="row">{{order.creationDate | date }}</td>
       <td>{{order.menu.label}}</td>
       <td>{{order.menu.priceDF}} €</td>
+      <td>
+        <ng-container *ngIf="order?.status === 0">Effectuée</ng-container>
+        <ng-container *ngIf="order?.status === 1">Livrée</ng-container>
+        <ng-container *ngIf="order?.status === 2">Annulée</ng-container>
+      </td>
       <td>{{order.id}}</td>
     </tr>
 
@@ -29,10 +47,80 @@
         <p *ngFor="let meal of order.quantityMeals">{{meal.meal.priceDF}} €</p>
       </td>
         </ng-container>
-
+      <td>
+        <ng-container *ngIf="order?.status === 0">Effectuée</ng-container>
+        <ng-container *ngIf="order?.status === 1">Livrée</ng-container>
+        <ng-container *ngIf="order?.status === 2">Annulée</ng-container>
+      </td>
       <td>{{order.id}}</td>
       </ng-container>
     </tr>
     </tbody>
   </table>
 </div>
+
+<!-- Modal -->
+
+<div class="modal" [style.display]="filterModal ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title">Filtrer</h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "closeModal('filterModal')">&times;</button>
+      </div>
+      
+      <ng-container *ngIf="cliquedButton === 'between_dates'">
+          <div class="modal-body">
+              <label class="pr-3">Date de debut </label>
+              <input type="date" name="beginDate" [(ngModel)]="beginDate"><br>
+              <label class="pr-3">Date de fin </label>
+              <input type="date" [(ngModel)]="endDate"><br>
+              <label class="pr-3">Statut </label>
+              <select name="singleSelect" [(ngModel)]="status">
+                <option value="0">Effectuée</option>
+                <option value="1">Livrée</option>
+                <option value="2">Annulé</option>
+              </select><br/>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal()">Annuler</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "filterButton('between_dates')">Filtrer</button>
+          </div>
+      </ng-container>
+      <ng-container *ngIf="cliquedButton === 'for_user'">
+          <div class="modal-body">
+            <label class="pr-3">Client </label>
+            <select name="singleSelect" [(ngModel)]="userId">
+              <ng-container *ngFor="let user of users">
+                <option value="{{user.id}}">{{user.name}} {{user.firstname}}</option>
+              </ng-container>
+            </select><br/>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal()">Annuler</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "filterButton('for_user')">Filtrer</button>
+          </div>
+      </ng-container>
+
+      <ng-container *ngIf="cliquedButton === 'for_user_today'">
+          <div class="modal-body">
+            <label class="pr-3">Client </label>
+            <select name="singleSelect" [(ngModel)]="userId">
+              <ng-container *ngFor="let user of users">
+                <option value="{{user.id}}">{{user.name}} {{user.firstname}}</option>
+              </ng-container>
+            </select><br/>
+          </div>
+          
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "closeModal()">Annuler</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click) = "filterButton('for_user_today')">Filtrer</button>
+          </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
