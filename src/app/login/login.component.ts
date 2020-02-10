@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   login(user) {
     this.authService.logIn(user.form.value)
       .subscribe(users => { this.users = users; console.log(localStorage.getItem('user_token')); },
-        error => { this.router.navigate(['/platDujour']); },
+        error => { this.router.navigate(['/login']); },
       () => { this.router.navigate(['/plat']); }
     );
     const   hello = this.authService.getDecodedToken(localStorage.getItem('user_token'));

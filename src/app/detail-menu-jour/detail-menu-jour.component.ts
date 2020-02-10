@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuService} from '../services/menu.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'detail-menu-jour',
@@ -11,7 +11,12 @@ export class DetailMenuJourComponent implements OnInit {
 
   key;
   mealDay = [];
-  constructor(private menuService: MenuService, private route: ActivatedRoute) {
+  confirmedModal;
+
+  constructor(
+    private menuService: MenuService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.route.params
     .subscribe(params => this.key = params.id);
    }
@@ -20,14 +25,38 @@ export class DetailMenuJourComponent implements OnInit {
     this.menuDetail();
   }
 
+  // menuDetail() {
+  //   this.menuService.findAllAvailableForToday()
+  //     .subscribe(data =>
+  //       {this.mealDay = data[this.key].meals;console.log(this.mealDay)
+  //         console.log('Les plats du menu sélectionné sont: ');
+  //       this.mealDay.forEach(element => {
+  //         console.log(element.label);
+  //         console.log('Prix: ' + element.priceDF)
+  //       });});
+  // }
+
   menuDetail() {
-    this.menuService.findAllAvailableForToday()
-      .subscribe(data =>
-        {this.mealDay = data[this.key].meals;
-          console.log('Les plats du menu sélectionné sont: ');
-        this.mealDay.forEach(element => {
-          console.log(element.label);
-          console.log('Prix: ' + element.priceDF)
-        });});
+    this.menuService.find(this.key)
+      .subscribe( data => { console.log(data); this.mealDay = data.meals;},
+      (error) => { console.log('Une ereur est survenue !') },
+      () => {})
+  }
+
+  addToCart() {
+    this.confirmedModal = true;
+    this.menuService.find(this.key)
+      .subscribe( data => { localStorage.setItem('menu_' + data.id, data.label + ' ' + data.id)},
+      (error) => { console.log('Une ereur est survenue !') },
+      () => {})
+  }
+
+  closeModal() {
+    this.confirmedModal = false;
+  }
+
+  cart() {
+    this.closeModal();
+    this.router.navigate(['/cart']);
   }
 }

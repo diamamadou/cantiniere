@@ -23,6 +23,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DetailCommandeComponent } from './detail-commande/detail-commande.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ModalComponent } from './modal/modal.component';
+import { CartComponent } from './cart/cart.component';
+import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +41,11 @@ import { ModalComponent } from './modal/modal.component';
     RegisterComponent,
     DetailMenuJourComponent,
     ForgotPasswordComponent,
-    DetailCommandeComponent
+    DetailCommandeComponent,
     UtilisateursComponent,
-    ModalComponent
+    ModalComponent,
+    CartComponent,
+    PlatDetailComponent
   ],
     imports: [
         BrowserModule,

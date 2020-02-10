@@ -12,10 +12,20 @@ h2, h3{
 
 th{
   text-align: center;
-  color: #ebd834;
+  color: #FFC107;
   font-weight: bold;
 }
 
 td{
   text-align: center;
+}
+
+button{
+  margin: 2px;
+  border-radius: 10px;
+}
+
+.statut{
+  background-color: #FFC107;
+  color: #ffffff;
 }

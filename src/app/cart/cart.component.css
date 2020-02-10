@@ -1,0 +1,33 @@
+.container{
+    margin-left: 200px;
+}
+
+h2, h3{
+    text-align: center;
+}
+
+.table{
+    width: 95%;
+}
+
+th{
+    text-align: center;
+    color: #FFC107;
+    font-weight: bold;
+}
+
+td{
+    text-align: center;
+}
+
+button{
+    margin: 2px;
+}
+
+.order-cancel-container{
+    align-content: center;
+}
+
+.order-cancel-container button {
+    border-radius: 10px;
+}

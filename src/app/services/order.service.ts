@@ -10,24 +10,13 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  addOrder(): Observable <any> {
-    const order = {
-      constraintId : -1,
-      menuId : 2,
-      quantityMeals: [
-        {mealId: 9,
-          quantity: 1
-        }
-      ],
-      userId: 1
-    };
-
+  addOrder(order): Observable <any> {
     const url = 'http://localhost:8080/lunchtime/order/add';
     return this.http.put(url, order, {responseType: 'json'})
-      .pipe(
-        tap(orderObject => {},
-          (err) => { console.log('erreur !'); })
-      );
+        .pipe(
+            tap(orderObject => {},
+                (err) => { console.log('erreur !'); })
+        );
   }
 
   cancelOrder(orderId): Observable<any> {
@@ -87,6 +76,33 @@ export class OrderService {
         tap(data => {},
           (err) => { console.log('Erreur !'); })
       );
+  }
+
+  findAllForUser(userId): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/order/findallforuser/' + userId;
+    return this.http.get(url)
+        .pipe(
+            tap(data => {},
+                (err) => { console.log('Erreur !'); })
+        );
+  }
+
+  findAllForUserToday(userId): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/order/findallforusertoday/' + userId;
+    return this.http.get(url)
+        .pipe(
+            tap(data => {},
+                (err) => { console.log('Erreur !'); })
+        );
+  }
+
+  updateOrder(orderId, order): Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/order/update/' + orderId;
+    return this.http.patch(url, order)
+        .pipe(
+            tap(data => {},
+                (err) => {console.log('Erreur !'); })
+        );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -1,18 +1,27 @@
 <div class="header">
-        <h1>Bienvenue</h1>
-        <p>chez votre cantinière</p>
-        <div class="user">
-                <i class="fa fa-shopping-basket">10€</i> 
-                <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Allan <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" title="Lien 1">Mon compte</a></li>
-                                   <li><a href="#" title="Lien 2">Mes commandes</a></li>
-                                   <li role="separator" class="divider"></li>
-                                   <li><a href="#" title="Lien 3">Déconnexion</a></li>
-                                </ul>
-                </div>
-        </div>
-
+	<h1>Bienvenue</h1>
+	<p>chez votre cantinière</p>
+	<div class="user">
+		<i *ngIf="isConnected()" class="fa fa-shopping-basket mr-1" [routerLink]="['/cart']"></i>
+		<i *ngIf="isConnected()" class="">{{userInfo?.wallet}}€</i> 
+		<div class="btn-group">
+			<button *ngIf="isConnected()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fa fa-user"></i> {{userInfo?.name}} <span class="caret"></span>
+			</button>
+			<button *ngIf="!isConnected()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fa fa-user"></i> <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a [routerLink]="['/login']">Mon compte</a></li>
+				<li><a href="#" (click)="orders()">Mes commandes</a></li>
+				<li role="separator" class="divider"></li>
+				<ng-container *ngIf="isConnected()">
+					<li><a (click)="logOut()">Déconnexion</a></li>
+				</ng-container>
+				<ng-container *ngIf="!isConnected()">
+					<li><a (click)="logIn()">Connexion</a></li>
+				</ng-container>
+			</ul>
+		</div>
+	</div>
 </div>

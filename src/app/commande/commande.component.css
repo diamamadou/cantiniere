@@ -12,10 +12,14 @@ h2, h3{
 
 th{
   text-align: center;
-  color: #ebd834;
+  color: #FFC107;
   font-weight: bold;
 }
 
 td{
   text-align: center;
+}
+
+button{
+  border-radius: 10px;
 }

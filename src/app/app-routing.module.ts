@@ -15,6 +15,8 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {DetailCommandeComponent} from './detail-commande/detail-commande.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ModalComponent } from './modal/modal.component';
+import { CartComponent } from './cart/cart.component';
+import { PlatDetailComponent } from './plat-detail/plat-detail.component';
 
 
 
@@ -35,7 +37,8 @@ const routes: Routes = [
   {path: 'detailCommande/:id', component: DetailCommandeComponent},
   {path: 'utilisateurs', component: UtilisateursComponent},
   {path: 'modal', component: ModalComponent},
-
+  {path: 'cart', component: CartComponent},
+  {path: 'plat-detail/:id', component: PlatDetailComponent},
 ];
 
 @NgModule({

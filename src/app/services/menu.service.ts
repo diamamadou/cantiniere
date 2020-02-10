@@ -21,6 +21,17 @@ export class MenuService {
       );
   }
 
+  find(menuId): Observable<any> {
+    const urlFind = 'http://localhost:8080/lunchtime/menu/find/' + menuId;
+    return this.http.get(urlFind, {responseType: 'json'})
+     .pipe(
+       tap( menu => {
+         ;
+        }),
+       catchError(this.handleError<any>('find')),
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

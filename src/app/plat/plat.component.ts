@@ -10,9 +10,14 @@ import {Router} from '@angular/router';
 })
 export class PlatComponent implements OnInit {
 
-  constructor(private platService: PlatService, private authService: AuthService, private router: Router) { }
+  constructor(
+    private platService: PlatService,
+    private authService: AuthService,
+    private router: Router) { }
+
   todayMeal;
   userInfo;
+
   ngOnInit() {
     this.getAllForToday();
   }
@@ -45,6 +50,10 @@ export class PlatComponent implements OnInit {
 
   register() {
     this.router.navigate(['/register']);
+  }
+
+  mealDetail(id) {
+    this.router.navigate(['/plat-detail/' + id])
   }
 
 }

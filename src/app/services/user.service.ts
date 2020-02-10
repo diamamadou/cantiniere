@@ -19,7 +19,16 @@ export class UserService {
         }),
        catchError(this.handleError<any>('getFindAll')),
       );
-}
+  }
+
+  findAll() : Observable<any> {
+    const url = 'http://localhost:8080/lunchtime/user/findall';
+    return this.http.get(url, {responseType: 'json'})
+      .pipe(
+        tap(data => {},
+          (err) => {console.log('Erreur !'); })
+      );
+  }
 
 private handleError<T>(operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {

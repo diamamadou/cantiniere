@@ -1,18 +1,30 @@
 <div class="container">
     <div class="row">
       <div class="col-12 mt-4">
-        <h3 class="text-center">-- Détail du menu --</h3>
+        <h3 class="text-center">-- Détail du plat --</h3>
         <hr class="accent my-5">
       </div>
       <div class="col-6 mx-auto menu-card">
-        <div class="card card-body text-center mb-2 ml-2" *ngFor="let meal of mealDay">
-          <h5 class="text-uppercase" >{{meal.label}}</h5>
+        <div class="card card-body text-center mb-2 ml-2">
+          <h5 class="text-uppercase" >{{meal?.label}}</h5>
           <!-- <h6>{{menu.value.label}}</h6> -->
           <div class="img-container">
-            <img src="http://localhost:8080/lunchtime/{{meal.image}}" alt="" />
+            <img src="http://localhost:8080/lunchtime/{{meal?.image}}" alt="" />
           </div>
           <p class="small"> Description </p>
-          <button class="float-right font-weight-bold btn-success" disabled>{{meal.priceDF}} €</button>
+          <button class="float-right font-weight-bold btn-success" disabled>{{meal?.priceDF}} €</button>
+        </div>
+      </div>
+
+      <div class="col-6 mx-auto menu-card">
+        <div class="card card-body text-center mb-2 ml-2">
+          <h5 class="text-uppercase" >Ingredients</h5>
+          <ng-container *ngFor="let ingredient of ingredients">
+            <div class="ingredient-img-container">
+                <img src="http://localhost:8080/lunchtime/{{ingredient?.image}}" alt="" />
+            </div>
+            <p class="small"> {{ingredient?.label}} </p>
+        </ng-container>
         </div>
       </div>
       <button class="font-weight-bold btn-success btn-block ml-2 mb-3 mt-3 fa fa-shopping-cart" (click)="addToCart()"> Ajouter au panier</button>
@@ -31,7 +43,7 @@
         </div>
         
         <div class="modal-body">
-         <p>Ce menu a été ajouté dans votre panier</p>
+         <p>Ce plat a été ajouté dans votre panier</p>
         </div>
         
         <div class="modal-footer">
