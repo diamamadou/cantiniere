@@ -13,7 +13,7 @@
 			</button>
 			<ul class="dropdown-menu">
 				<li><a [routerLink]="['/login']">Mon compte</a></li>
-				<li><a href="#" (click)="orders()">Mes commandes</a></li>
+				<li><a (click)="orders()">Mes commandes</a></li>
 				<li role="separator" class="divider"></li>
 				<ng-container *ngIf="isConnected()">
 					<li><a (click)="logOut()">Déconnexion</a></li>
