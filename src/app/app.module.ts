@@ -25,6 +25,7 @@ import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { ModalComponent } from './modal/modal.component';
 import { CartComponent } from './cart/cart.component';
 import { PlatDetailComponent } from './plat-detail/plat-detail.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PlatDetailComponent } from './plat-detail/plat-detail.component';
     UtilisateursComponent,
     ModalComponent,
     CartComponent,
-    PlatDetailComponent
+    PlatDetailComponent,
+    IngredientsComponent
   ],
     imports: [
         BrowserModule,

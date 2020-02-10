@@ -1,0 +1,139 @@
+<button id="btnAdd" (click)="Add(ingredientsLabel.value); ingredientLabel.value=''" class="btn btn-warning"> Ajouter un ingredient </button> 
+<div class="container">
+  <div class="row">
+
+    <h2 class="text-success mt-5 mb-2">Liste des ingredients</h2> 
+
+    <!-- Tableau des ingredients -->
+    <table class="table table-hover mt-5 ml-5 w-100">
+      <thead class="thead-dark text-center ">
+        <tr>
+           <th>Image</th>
+           <th>Libelle </th>  
+           <th>Options</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table" *ngFor="let ingredients of Ingredients">
+          <td class="w-25" id="{{ingredients.image}}"> <img src="http://localhost:8080/lunchtime/{{ingredients.image}}" /> </td>
+          <td class="pt-5 w-25 fa-2x text-center" id="{{ingredients.label}}"> {{ingredients.label}} </td>  
+          <td class="w-25 ml-5" style="cursor: pointer;font-weight: bold;">
+            <button id="{{ingredients.id}}" (click)="Update(ingredients)" class="btn btn-info col-5">Modifier </button> <br><br><br>
+            <button id="{{ingredients.id}}" (click)="Delete(ingredients)" class="btn btn-danger col-5">Supprimer </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+<!-- Modal ADD ingredient -->
+<div class="modal" id="myModal3" [style.display]="showModal3 ? 'block' : 'none' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!--Modal header -->
+      <div class="modal-header">
+        <h4 class="modal-title"> Ajouter un ingredient </h4>
+        <button type="button" class="close" data-dismiss="modal" (click) ="hide()"> &times; </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <form (ngSubmit)="add(i)" #i="ngForm">
+          <label> Libelle : &nbsp; </label>
+          <input type="text" class="form-controle w-50" name="label" [(ngModel)]="name" id="IngredientLabel"> <br><br>
+
+          <label> Image :  &nbsp;</label>
+          <input type="file" class="form-control-file" name="image"  [(ngModel)]="image" id="IngredientImage"> <br><br>
+
+          <label> Description :  &nbsp;</label>
+          <input type="text" class="form-control-file" name="description"  [(ngModel)]="description" id="IngredientDescription"> <br><br>
+
+          <button class="btn btn-success ml-1" type="submit">Ajouter</button>
+        </form>
+      </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger" data-dismiss="modal" [disabled]="i.invalid" (click) = "hide()">Annuler</button> 
+        </div>
+
+    </div>
+  </div>  
+</div>
+
+
+
+ <!-- Modal UPDATE ingredient -->
+  <div class="modal" id="myModal" [style.display]="showModal ? 'block' :'none' "> 
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"> Modifier l'ingredient : {{ingredient.label}} </h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()"> &times; </button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form (ngSubmit) ="update(i)" #i="ngForm">
+            <label> Libelle : &nbsp;</label>
+            <input type="text" class="form-control w-50" [(ngModel)]="ingredient" name="label"> <br><br>
+
+            <label> Image :  &nbsp;</label>
+            <input type="file" class="form-control-file" [(ngModel)]='ingredient' name="image"> <br><br>
+
+            <label> Description :  &nbsp;</label>
+            <input type="text" class="form-control-file" [(ngModel)]='ingredient' name="description"> <br><br>
+
+            <button class="btn btn-success ml-1" type=""submit>Modifier</button>
+          </form>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Annuler</button> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal DELETE ingredient -->
+  <div class="modal" id="myModal2" [style.display]="showModal2 ? 'block' : 'none'">
+      <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title"> Supprimé l'ingrédient : {{Label}} </h4>
+              <button type="button" class="close" data-dismiss="modal" (click) = "hide()"> &times; </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <form (ngsubmit)="delete(f)" #f="ngForm">
+              <p> Voulez vous vraiment supprimer l'ingredient : {{Label}} ? </p>  
+              <button class="btn btn-danger" type="submit"> Supprimer </button>
+              </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()"> Annuler </button>
+            </div>
+            
+          </div>
+      </div>
+  </div>
+
+
+
+
+  </div>
+</div>
