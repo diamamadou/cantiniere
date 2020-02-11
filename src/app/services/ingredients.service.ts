@@ -54,10 +54,11 @@ getIngredient(id: number): Observable<Ingredient> {
   //////// Save methods //////////
 
 //ADD Ingredients
-Add(Ingredient: Ingredient): Observable<Ingredient> {
- return this.http.post<Ingredient>(this.ingredientsUrl, Ingredient, this.httpOptions).pipe(
-   tap((newIngredient: Ingredient) => this.log(`Add New Hero id=${newIngredient.id}`)),
-   catchError(this.handleError<Ingredient>('AddHero'))
+addIngredient(ingredient: Ingredient): Observable<Ingredient> {
+ return this.http.post<Ingredient>(this.ingredientsUrl, ingredient, this.httpOptions)
+ .pipe(
+   tap(() => {}),
+   catchError(this.handleError<Ingredient>('addIngredient'))
  );
 }
 

@@ -39,6 +39,14 @@ Add(label: string): void
     });
 }
 
+addIngredient(ingredient)
+{
+  this.showModal3 = true; 
+  ingredient = ingredient.form.value;
+  this.IngredientsService.addIngredient(ingredient
+    .subscribe((Ingredients) => { this.Ingredients.push(Ingredients); }));
+}
+
 //DELETE Ingredients
 Delete(ingredients: Ingredient): void {
   this.showModal2 = true; // Show-Hide Modal Check

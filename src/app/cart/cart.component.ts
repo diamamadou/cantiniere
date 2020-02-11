@@ -82,7 +82,6 @@ export class CartComponent implements OnInit {
       };
     }
 
-    console.log(this.newOrder);
     this.orderService.addOrder(this.newOrder)
         .subscribe(order => { console.log('order'); console.log('this.meal'); },
             (error) => { console.log('Vous ne pouvez pas commander à cette heure / Le nombre de commandes maximum est atteint !'); },
