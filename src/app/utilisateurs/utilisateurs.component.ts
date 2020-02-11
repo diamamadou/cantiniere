@@ -70,20 +70,18 @@ export class UtilisateursComponent implements OnInit {
 
 
   credit(amount) {
-    console.log(this.UserId);
+    //console.log(this.amount);
+    //console.log(amount);
+    //console.log(this.UserId);
+    
     amount = amount.form.value.amount;
-    console.log(amount);
-
-    this.creditService.credit(this.UserId,amount)
-
+    this.creditService.credit(this.UserId,this.amount)
       .subscribe(data => {
         this.amount = data[this.UserId]; 
         console.log(amount);
       },
       error => {this.errors = error; },
-      () => {
-        this.router.navigate(['/user/credit/' + this.UserId + '/'+ amount]); 
-      }
+      () => { location.reload(); }
       );
   }
 
@@ -100,7 +98,7 @@ export class UtilisateursComponent implements OnInit {
       },
       error => {this.errors = error; },
       () => {
-        this.router.navigate(['/user/delete/'+id]); 
+        //this.router.navigate(['/user/delete/'+id]); 
       }
       );
   }
