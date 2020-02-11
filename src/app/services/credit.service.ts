@@ -10,14 +10,13 @@ import { Router } from '@angular/router';
 export class CreditService {
 
   constructor(private http: HttpClient, private router: Router) { }
+  
   credit(id,amount): Observable<any> {
     const montant = "amount="+amount;
     const url = 'http://localhost:8080/lunchtime/user/credit/'+id+'?'+montant;
     return this.http.post(url, {responseType: 'json'})
      .pipe(
-       tap( credit => {
-         ;
-        }),
+       tap( credit => {}),
        catchError(this.handleError<any>('credit')),
       );
   }
